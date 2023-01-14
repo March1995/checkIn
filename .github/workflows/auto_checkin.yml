@@ -16,7 +16,7 @@ on:
 
 jobs:
   checkin:
-    runs-on: ubuntu-latest
+    runs-on: Darwin
     #if: github.event.repository.owner.id == github.event.sender.id
     # https://p3terx.com/archives/github-actions-manual-trigger.html
     
@@ -38,4 +38,4 @@ jobs:
       env: 
         PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
-    - uses: gautamkrishnar/keepalive-workflow@master # using the workflow with default settings
+   # - uses: gautamkrishnar/keepalive-workflow@master # using the workflow with default settings
