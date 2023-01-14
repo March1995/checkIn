@@ -1,41 +1,35 @@
-name: checkin
+name: auto_checkin
 
 on:
-  workflow_dispatch: 
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Triggers the workflow on push or pull request events but only for the main branch
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+
   schedule:
-    - cron:  0 5 * * * 
-      # 
-      # https://tool.lu/crontab/
-      # https://datetime360.com/cn/utc-cst-china-time/
-  #watch:
-  #    types: started   
+    - cron: "5 0 * * *"
+
+  workflow_dispatch:
 
 jobs:
-  checkin:
-    runs-on: ubuntu-latest
-    #if: github.event.repository.owner.id == github.event.sender.id
-    # https://p3terx.com/archives/github-actions-manual-trigger.html
-    
+  build:
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Install Python
-      run: |
-        sudo apt update && \
-        sudo apt install python3
-      
-    - name: requirements
-      run: |
-        pip3 install -r requirements.txt
-       # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
-    - name: Checkin
-      run: |
-        python3 glados_checkin/glados.py
-      env: 
-        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-        GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
-   # - uses: gautamkrishnar/keepalive-workflow@master # using the workflow with default settings
+      - uses: actions/checkout@v2
+      - name: Install requirements
+        run: |
+          pip3 install -r ./requirements.txt
+      - name: Run checkin
+        run: |
+          python3 ./main.py
+        env:
+          GLADOS_COOKIE: '${{ secrets.GLADOS_COOKIE }}'
+          CLOUD189_COOKIE: '${{ secrets.CLOUD189_COOKIE }}'
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          SERVER_TOKEN: ${{ secrets.SERVER_TOKEN }}
+          BILIBILI_COOKIE: ${{ secrets.BILIBILI_COOKIE }}
+          ABLESCI_COOKIE: ${{ secrets.ABLESCI_COOKIE }}
+          BILI_COIN_COOKIE: ${{secrets.BILI_COIN_COOKIE}}
+          GUFENXUESHU_COOKIE: ${{secrets.GUFENXUESHU_COOKIE}}
+      - uses: gautamkrishnar/keepalive-workflow@master
