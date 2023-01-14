@@ -16,7 +16,7 @@ on:
 
 jobs:
   checkin:
-    runs-on: Darwin
+    runs-on: ubuntu-latest
     #if: github.event.repository.owner.id == github.event.sender.id
     # https://p3terx.com/archives/github-actions-manual-trigger.html
     
