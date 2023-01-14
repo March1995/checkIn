@@ -19,7 +19,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 def get_driver_version():
     global cmd
     system = platform.system()
-    println(system)
+    print(system)
     if system == "Darwin":
         cmd = r'''/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version'''
     elif system == "Windows":
