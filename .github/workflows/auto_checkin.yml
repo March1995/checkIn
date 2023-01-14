@@ -34,7 +34,7 @@ jobs:
        # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
     - name: Checkin
       run: |
-        python3 main.py
+        python3 glados_checkin\glados.py
       env: 
         PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
         GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
