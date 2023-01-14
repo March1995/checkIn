@@ -67,4 +67,4 @@ if __name__ == '__main__':
     # except Exception as e:
     #     checkin_message.append('main function: gufenxueshu checkin error, the error is ' + str(e))
 
-    push_all_message(checkin_message=checkin_message, pushplus_token=pushplus_token, server_token=server_token)
+    push_all_message(checkin_message=checkin_message, pushplus_token=pushplus_token, server_token='')
