@@ -38,8 +38,10 @@ def glados_status(driver):
         })();
         """ % (status_url)
     status_query = status_query.replace("\n", "")
+    print('The print status_query is: ' + status_query)
     resp = driver.execute_script("return " + status_query)
     resp = json.loads(resp["response"])
+    print('The print resp is: ' + resp)
     return resp["code"], resp["data"]
 
 
@@ -75,6 +77,8 @@ def glados(cookie_string=None, driver=None):
     )
 
     checkin_code, checkin_message = glados_checkin(driver)
+    print('The print checkin_code checkin_message is: ' + checkin_code + checkin_message)
+
     if checkin_code == -2: checkin_message = "Login fails, please check your cookie."
     print(f"[Checkin] {checkin_message}")
 
