@@ -65,6 +65,7 @@ def glados(cookie_string=None, driver=None):
     ]
 
     driver.delete_all_cookies()
+    print('delete_all_cookies')
     for cookie in cookie_dict:
         if cookie["name"] in ["koa:sess", "koa:sess.sig"]:
             driver.add_cookie({
@@ -75,6 +76,7 @@ def glados(cookie_string=None, driver=None):
             })
 
     driver.get("https://glados.rocks")
+    print('driver.get("https://glados.rocks")')
     WebDriverWait(driver, 240).until(
         lambda x: x.title != "Just a moment..."
     )
