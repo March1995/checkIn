@@ -17,13 +17,15 @@ def glados_checkin(driver):
         var request = new XMLHttpRequest();
         request.open("POST","%s",false);
         request.setRequestHeader('content-type', 'application/json');
-        request.send('{"token": "glados.one"}');
+        request.send('{"token": "glados.network"}');
         return request;
         })();
         """ % checkin_url
     checkin_query = checkin_query.replace("\n", "")
+    print('The print glados_checkin is: ' + checkin_query)
     resp = driver.execute_script("return " + checkin_query)
     resp = json.loads(resp["response"])
+    print('The print glados_checkin resp is: ' + resp)
     return resp["code"], resp["message"]
 
 
