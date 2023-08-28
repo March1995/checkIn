@@ -12,6 +12,7 @@ import checkin_util
 
 def glados_checkin(driver):
     checkin_url = "https://glados.rocks/api/user/checkin"
+    print('The print glados_checkin is: ' + checkin_url)
     checkin_query = """
         (function (){
         var request = new XMLHttpRequest();
