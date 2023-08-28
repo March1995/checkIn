@@ -56,6 +56,7 @@ def glados(cookie_string=None, driver=None):
         driver = get_driver()
     # Load cookie
     driver.get("https://glados.rocks")
+    print('Load cookie')
 
     if cookie_string.startswith("cookie:"):
         cookie_string = cookie_string[len("cookie:"):]
