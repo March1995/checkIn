@@ -79,7 +79,7 @@ def glados(cookie_string=None, driver=None):
         lambda x: x.title != "Just a moment..."
     )
 
-    print('The print checkin_code checkin_message start: '
+    print('The print checkin_code checkin_message start: ')
     checkin_code, checkin_message = glados_checkin(driver)
     print('The print checkin_code checkin_message is: ' + checkin_code + checkin_message)
 
