@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     print('The print message is: ')
     try:
-        checkin_message = glados_main(checkin_message=checkin_message, glados_cookie=glados_cookie)
+        checkin_message = glados_main(glados_cookie=glados_cookie, checkin_message=checkin_message)
     except Exception as e:
         checkin_message.append('main function: gloads checkin error, the error is ' + str(e))
 
