@@ -5,6 +5,7 @@
 
 import json
 import time
+import requests,os
 from checkin_util.uc_driver import *
 
 import checkin_util
@@ -13,43 +14,59 @@ import checkin_util
 def glados_checkin(driver):
     checkin_url = "https://glados.rocks/api/user/checkin"
     print('The print glados_checkin is: ' + checkin_url)
-    checkin_query = """
-        (function (){
-        var request = new XMLHttpRequest();
-        request.open("POST","%s",false);
-        request.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-        request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
-        request.setRequestHeader('origin', 'https://glados.rocks');
-        request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
-        request.send('{"token": "glados.one"}');
-        return request;
-        })();
-        """ % checkin_url
-    checkin_query = checkin_query.replace("\n", "")
-    print('The print glados_checkin is: ' + checkin_query)
-    resp = driver.execute_script("return " + checkin_query)
-    resp = json.loads(resp["response"])
+    # checkin_query = """
+    #     (function (){
+    #     var request = new XMLHttpRequest();
+    #     request.open("POST","%s",false);
+    #     request.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+    #     request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
+    #     request.setRequestHeader('origin', 'https://glados.rocks');
+    #     request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
+    #     request.send('{"token": "glados.one"}');
+    #     return request;
+    #     })();
+    #     """ % checkin_url
+    # checkin_query = checkin_query.replace("\n", "")
+    # print('The print glados_checkin is: ' + checkin_query)
+    # resp = driver.execute_script("return " + checkin_query)
+
+    cookie = os.environ.get("GLADOS_COOKIE", []).split("&")[0]
+    url= "https://glados.rocks/api/user/checkin"
+    referer = 'https://glados.rocks/console/checkin'
+    origin = "https://glados.rocks"
+    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
+    payload={
+        'token': 'glados.one'
+    }
+    checkin = requests.post(checkin_url,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
+    resp = json.loads(checkin["response"])
     print('The print glados_checkin resp is: ' + resp)
     return resp["code"], resp["message"]
 
 
 def glados_status(driver):
-    status_url = "https://glados.rocks/api/user/status"
-    status_query = """
-        (function (){
-        var request = new XMLHttpRequest();
-        request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
-        request.setRequestHeader('origin', 'https://glados.rocks');
-        request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
-        request.open("GET","%s",false);
-        request.send(null);
-        return request;
-        })();
-        """ % (status_url)
-    status_query = status_query.replace("\n", "")
-    print('The print status_query is: ' + status_query)
-    resp = driver.execute_script("return " + status_query)
-    resp = json.loads(resp["response"])
+    # status_url = "https://glados.rocks/api/user/status"
+    # status_query = """
+    #     (function (){
+    #     var request = new XMLHttpRequest();
+    #     request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
+    #     request.setRequestHeader('origin', 'https://glados.rocks');
+    #     request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
+    #     request.open("GET","%s",false);
+    #     request.send(null);
+    #     return request;
+    #     })();
+    #     """ % (status_url)
+    # status_query = status_query.replace("\n", "")
+    # print('The print status_query is: ' + status_query)
+    # resp = driver.execute_script("return " + status_query)
+    cookie = os.environ.get("GLADOS_COOKIE", []).split("&")[0]
+    url2= "https://glados.rocks/api/user/status"
+    referer = 'https://glados.rocks/console/checkin'
+    origin = "https://glados.rocks"
+    useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
+    state =  requests.get(url2,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent})
+    resp = json.loads(state["response"])
     print('The print resp is: ' + resp)
     return resp["code"], resp["data"]
 
@@ -63,7 +80,7 @@ def glados(cookie_string=None, driver=None):
     if driver is None:
         driver = get_driver()
     # Load cookie
-    driver.get("https://glados.rocks")
+    # driver.get("https://glados.rocks")
     print(f'Load cookie')
 
     if cookie_string.startswith("cookie:"):
