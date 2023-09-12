@@ -59,7 +59,7 @@ def glados(cookie_string=None, driver=None):
     if cookie_string is None:
         raise Exception('The cookie is None')
 
-    print(f'The cookie is None')
+    print(f'111  The cookie is None')
     if driver is None:
         driver = get_driver()
     # Load cookie
