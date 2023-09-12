@@ -39,9 +39,9 @@ def glados_checkin(driver):
         'token': 'glados.one'
     }
     checkin = requests.post(checkin_url,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
-    resp = json.loads(checkin["response"])
-    print('The print glados_checkin resp is: ' + resp)
-    return resp["code"], resp["message"]
+    # resp = json.loads(checkin["response"])
+    print('The print glados_checkin resp is: ' + checkin)
+    return checkin.json()["code"], checkin.json()['data']
 
 
 def glados_status(driver):
@@ -66,9 +66,9 @@ def glados_status(driver):
     origin = "https://glados.rocks"
     useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
     state =  requests.get(url2,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent})
-    resp = json.loads(state["response"])
-    print('The print resp is: ' + resp)
-    return resp["code"], resp["data"]
+    # resp = json.loads(state["response"])
+    print('The print resp is: ' + state)
+    return state.json()["code"], state.json()['data']
 
 
 def glados(cookie_string=None, driver=None):
