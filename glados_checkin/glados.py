@@ -17,8 +17,11 @@ def glados_checkin(driver):
         (function (){
         var request = new XMLHttpRequest();
         request.open("POST","%s",false);
-        request.setRequestHeader('content-type', 'application/json');
-        request.send('{"token": "glados.network"}');
+        request.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+        request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
+        request.setRequestHeader('origin', 'https://glados.rocks');
+        request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
+        request.send('{"token": "glados.one"}');
         return request;
         })();
         """ % checkin_url
@@ -35,6 +38,9 @@ def glados_status(driver):
     status_query = """
         (function (){
         var request = new XMLHttpRequest();
+        request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
+        request.setRequestHeader('origin', 'https://glados.rocks');
+        request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
         request.open("GET","%s",false);
         request.send(null);
         return request;
