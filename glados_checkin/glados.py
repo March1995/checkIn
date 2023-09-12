@@ -83,22 +83,22 @@ def glados(cookie_string=None, driver=None):
     # driver.get("https://glados.rocks")
     print(f'Load cookie')
 
-    if cookie_string.startswith("cookie:"):
-        cookie_string = cookie_string[len("cookie:"):]
-    cookie_dict = [
-        {"name": x[:x.find('=')].strip(), "value": x[x.find('=') + 1:].strip()}
-        for x in cookie_string.split(';')
-    ]
+    # if cookie_string.startswith("cookie:"):
+    #     cookie_string = cookie_string[len("cookie:"):]
+    # cookie_dict = [
+    #     {"name": x[:x.find('=')].strip(), "value": x[x.find('=') + 1:].strip()}
+    #     for x in cookie_string.split(';')
+    # ]
 
     # driver.delete_all_cookies()
-    for cookie in cookie_dict:
-        if cookie["name"] in ["koa:sess", "koa:sess.sig"]:
-            driver.add_cookie({
-                "domain": "glados.rocks",
-                "name": cookie["name"],
-                "value": cookie["value"],
-                "path": "/",
-            })
+    # for cookie in cookie_dict:
+    #     if cookie["name"] in ["koa:sess", "koa:sess.sig"]:
+    #         driver.add_cookie({
+    #             "domain": "glados.rocks",
+    #             "name": cookie["name"],
+    #             "value": cookie["value"],
+    #             "path": "/",
+    #         })
 
     # driver.get("https://glados.rocks")
     print(f'driver.get("https://glados.rocks")')
@@ -122,7 +122,7 @@ def glados(cookie_string=None, driver=None):
     else:
         message = 'The account login fails, please check your cookie. '
 
-    close_driver(driver=driver)
+    # close_driver(driver=driver)
 
     return message
 
