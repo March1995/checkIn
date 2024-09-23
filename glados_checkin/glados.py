@@ -67,7 +67,7 @@ def glados_status(driver):
     useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
     state =  requests.get(url2,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent})
     # resp = json.loads(state["response"])
-    print('The print resp is: ' + state)
+    print('The print resp is: ' + state.text)
     return state.json()["code"], state.json()['data']
 
 
