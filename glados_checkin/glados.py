@@ -40,7 +40,7 @@ def glados_checkin(driver):
     }
     checkin = requests.post(checkin_url,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
     # resp = json.loads(checkin["response"])
-    print('The print glados_checkin resp is: ' + checkin)
+    print('The print glados_checkin resp is: ' + checkin.text)
     return checkin.json()["code"], checkin.json()['data']
 
 
@@ -76,7 +76,6 @@ def glados(cookie_string=None, driver=None):
     if cookie_string is None:
         raise Exception('The cookie is None')
 
-    print(f'111  The cookie is None')
     # if driver is None:
         # driver = get_driver()
     # Load cookie
