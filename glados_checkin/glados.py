@@ -41,7 +41,7 @@ def glados_checkin(driver):
     checkin = requests.post(checkin_url,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent,'content-type':'application/json;charset=UTF-8'},data=json.dumps(payload))
     # resp = json.loads(checkin["response"])
     print('The print glados_checkin resp is: ' + checkin.text)
-    return checkin.json()["code"], checkin.json()['data']
+    return checkin.json()["code"], checkin.json()['message']
 
 
 def glados_status(driver):
