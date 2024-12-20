@@ -32,4 +32,4 @@ jobs:
           ABLESCI_COOKIE: ${{ secrets.ABLESCI_COOKIE }}
           BILI_COIN_COOKIE: ${{secrets.BILI_COIN_COOKIE}}
           GUFENXUESHU_COOKIE: ${{secrets.GUFENXUESHU_COOKIE}}
-      - uses: gautamkrishnar/keepalive-workflow@master
+      # - uses: gautamkrishnar/keepalive-workflow@master
