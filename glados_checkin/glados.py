@@ -12,15 +12,15 @@ import checkin_util
 
 
 def glados_checkin(driver):
-    checkin_url = "https://glados.rocks/api/user/checkin"
+    checkin_url = "https://glados.cloud/api/user/checkin"
     print('The print glados_checkin is: ' + checkin_url)
     # checkin_query = """
     #     (function (){
     #     var request = new XMLHttpRequest();
     #     request.open("POST","%s",false);
     #     request.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-    #     request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
-    #     request.setRequestHeader('origin', 'https://glados.rocks');
+    #     request.setRequestHeader('referer', 'https://glados.cloud/console/checkin');
+    #     request.setRequestHeader('origin', 'https://glados.cloud');
     #     request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
     #     request.send('{"token": "glados.one"}');
     #     return request;
@@ -31,9 +31,9 @@ def glados_checkin(driver):
     # resp = driver.execute_script("return " + checkin_query)
 
     cookie = os.environ.get("GLADOS_COOKIE", []).split("&")[0]
-    url= "https://glados.rocks/api/user/checkin"
-    referer = 'https://glados.rocks/console/checkin'
-    origin = "https://glados.rocks"
+    url= "https://glados.cloud/api/user/checkin"
+    referer = 'https://glados.cloud/console/checkin'
+    origin = "https://glados.cloud"
     useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
     payload={
         'token': 'glados.one'
@@ -45,12 +45,12 @@ def glados_checkin(driver):
 
 
 def glados_status(driver):
-    # status_url = "https://glados.rocks/api/user/status"
+    # status_url = "https://glados.cloud/api/user/status"
     # status_query = """
     #     (function (){
     #     var request = new XMLHttpRequest();
-    #     request.setRequestHeader('referer', 'https://glados.rocks/console/checkin');
-    #     request.setRequestHeader('origin', 'https://glados.rocks');
+    #     request.setRequestHeader('referer', 'https://glados.cloud/console/checkin');
+    #     request.setRequestHeader('origin', 'https://glados.cloud');
     #     request.setRequestHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36');
     #     request.open("GET","%s",false);
     #     request.send(null);
@@ -61,9 +61,9 @@ def glados_status(driver):
     # print('The print status_query is: ' + status_query)
     # resp = driver.execute_script("return " + status_query)
     cookie = os.environ.get("GLADOS_COOKIE", []).split("&")[0]
-    url2= "https://glados.rocks/api/user/status"
-    referer = 'https://glados.rocks/console/checkin'
-    origin = "https://glados.rocks"
+    url2= "https://glados.cloud/api/user/status"
+    referer = 'https://glados.cloud/console/checkin'
+    origin = "https://glados.cloud"
     useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
     state =  requests.get(url2,headers={'cookie': cookie ,'referer': referer,'origin':origin,'user-agent':useragent})
     # resp = json.loads(state["response"])
@@ -79,7 +79,7 @@ def glados(cookie_string=None, driver=None):
     # if driver is None:
         # driver = get_driver()
     # Load cookie
-    # driver.get("https://glados.rocks")
+    # driver.get("https://glados.cloud")
     print(f'Load cookie')
 
     # if cookie_string.startswith("cookie:"):
@@ -93,14 +93,14 @@ def glados(cookie_string=None, driver=None):
     # for cookie in cookie_dict:
     #     if cookie["name"] in ["koa:sess", "koa:sess.sig"]:
     #         driver.add_cookie({
-    #             "domain": "glados.rocks",
+    #             "domain": "glados.cloud",
     #             "name": cookie["name"],
     #             "value": cookie["value"],
     #             "path": "/",
     #         })
 
-    # driver.get("https://glados.rocks")
-    print(f'driver.get("https://glados.rocks")')
+    # driver.get("https://glados.cloud")
+    print(f'driver.get("https://glados.cloud")')
     # WebDriverWait(driver, 240).until(
     #     lambda x: x.title != "Just a moment..."
     # )
